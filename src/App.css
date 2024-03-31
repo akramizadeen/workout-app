@@ -1,38 +1,142 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 14pt;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin: 0;
+  font-size: 60pt;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 span {
+  color: rgb(3, 117, 90);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-Content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form {
+  width: 300px;
+  background: #f0f8ff;
+  padding: 10pt 20pt;
+  border: 1px solid rgb(3, 117, 90);
+  border-radius: 10pt;
+}
+
+.form-row {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 15pt 0;
+  font-size: 14pt;
+}
+
+.form-row input[type=text] {
+  margin: 5px 0;
+  padding: 8px 11px;
+  font-size: 14pt;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(128, 240, 201);
+  border-radius: 10pt;
+  outline: none;
+  box-sizing: border-box;
+  transition-duration: .7s;
+}
+
+.form-row input[type=text]:focus {
+  border: 1px solid rgb(3, 117, 90);
+}
+
+.btn {
+  padding: 8pt 10pt;
+  background: rgb(3, 117, 90);
+  font-size: 14pt;
+  border: 2px solid rgb(3, 117, 90);
+  border-radius: 10pt;
+  color: #faf4f4;
+  transition-duration: .8s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #f0f8ff;
+  color: rgb(3, 117, 90);
+}
+
+.workout-list {
+  width: 100%;
+  background: #03755a;
+  justify-content: center;
+  align-items: center;
+}
+
+.workout-list h2 {
+  color: #f0f8ff;
+  text-align: center;
+  font-size: 26pt;
+  margin: 0;
+  padding: 10px 0px;
+}
+
+.workout-card * {
+  margin: 0;
+}
+
+.workout-card {
+  background: #e9fbf7;
+  border: 2px solid #a9f0e1;
+  border-radius: 10px;
+  padding: 5px 15px;
+  margin: 10px 10px;
+  width: 300px;
+  float: left;
+}
+
+.workout-actions {
+  text-align: right;
+}
+
+.workout-actions span {
+  margin: 5px 5px;
+  cursor: pointer;
+}
+
+.icon-delete {
+  color: red;
+  border: 1px solid red;
+  transition-duration: .6s;
+}
+
+.icon-delete:hover {
   color: white;
+  background: red;
 }
 
-.App-link {
-  color: #61dafb;
+.icon-edit {
+  color: orange;
+  border: 1px solid orange;
+  transition-duration: .6s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon-edit:hover {
+  color: white;
+  background: orange;
+}
+
+.icon-view {
+  color: blue;
+  border: 1px solid blue;
+  transition-duration: .6s;
+}
+
+.icon-view:hover {
+  color: white;
+  background: blue;
 }
