@@ -2,25 +2,27 @@ import './App.css';
 import Form from './components/Form';
 import Workout from './components/Workout';
 import wImage from './assets/image.png';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useWorkoutsContext } from './hooks/useWorkoutsContext';
 
 
 function App() {
-  const [workouts, setWorkouts] = useState([])
-
-  async function getWorkouts() {
-    const data = await fetch('http://localhost:4000/api/workouts', {
-      method: 'GET',
-      headers: {
-        accept: 'application/json'
-      }
-    })
-    const fetchedData = await data.json()
-    setWorkouts(fetchedData)
-  }
+  const {workouts, dispatch} = useWorkoutsContext()
 
   useEffect(() => {
-    getWorkouts()
+    const getWorkouts = async () => {
+      const response = await fetch('http://localhost:4000/api/workouts', {
+        method: 'GET',
+        headers: {
+          accept: 'application/json'
+        }
+      })
+      const json = await response.json()
+  
+      if (response.ok) {
+        dispatch({type: 'SET_WORKOUTS', payload: json})
+      }
+    }
   }, [])
 
   return (
@@ -34,8 +36,8 @@ function App() {
       </div>
       <div className='workout-list'>
         <h2>Workouts</h2>
-        {workouts.map((workout) => (
-          <Workout title={workout.title} loads={workout.load} reps={workout.reps} />
+        {workouts && workouts.map((workout) => (
+          <Workout key={workout._id} workout={workout} />
         ))}
       </div>
     </div>
