@@ -7,7 +7,7 @@ import { useWorkoutsContext } from './hooks/useWorkoutsContext';
 
 
 function App() {
-  const {workouts, dispatch} = useWorkoutsContext()
+  const { workouts, dispatch } = useWorkoutsContext()
 
   useEffect(() => {
     const getWorkouts = async () => {
@@ -20,10 +20,13 @@ function App() {
       const json = await response.json()
   
       if (response.ok) {
+        // console.log(response)
         dispatch({type: 'SET_WORKOUTS', payload: json})
       }
     }
-  }, [])
+
+    getWorkouts()
+  }, [dispatch])
 
   return (
     <div className='App'>

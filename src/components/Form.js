@@ -9,6 +9,7 @@ function Form() {
   const [load, setLoad] = useState('')
   const [reps, setReps] = useState('')
   const [error, setError] = useState(null)
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,12 +27,13 @@ function Form() {
 
     if (!response.ok) {
       setError(json.error)
+      setEmptyFields(json.emptyFields)
     } else {
       setTitle('')
       setLoad('')
       setReps('')
       setError(null)
-      alert('New Workout Added')
+      setEmptyFields([])
       dispatch({ type: 'CREATE_WORKOUT', payload: json})
     }
   }
@@ -39,32 +41,38 @@ function Form() {
   return (
       <form action="#" className='workout-form' onSubmit={handleSubmit}>
         <div className='form-row'>
-          <label htmlFor="workout-name">Workout</label>
+          <label id="workout-name">Workout</label>
           <input
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             value={title} 
-            name='workout-name' 
+            name='workout-name'
+            className={ emptyFields.includes('title') ? 'error' : '' }
           />
         </div>
         <div className='form-row'>
-          <label htmlFor="workout-load">Load</label>
+          <label id="workout-load">Load</label>
           <input
             type="text"
             onChange={(e) => setLoad(e.target.value)}
             value={load}
             name='workout-load'
+            className={ emptyFields.includes('loads') ? 'error' : '' }
           />
         </div>
         <div className='form-row'>
-          <label htmlFor="workout-reps">No.Of. Reps</label>
+          <label id="workout-reps">No.Of. Reps</label>
           <input
             type="text"
             onChange={(e) => setReps(e.target.value)}
             value={reps}
             name='workout-reps'
+            className={ emptyFields.includes('reps') ? 'error' : '' }
           />
         </div>
+        {error && <div className="error-message">
+          <p>{error}</p>  
+        </div>}
         <button type="submit" className='btn'>Add Workout</button>
       </form>
   );

@@ -50,8 +50,25 @@ h1 span {
   transition-duration: .7s;
 }
 
+.form-row input.error {
+  border: 1px solid rgb(245, 27, 27);
+}
+
 .form-row input[type=text]:focus {
   border: 1px solid rgb(3, 117, 90);
+}
+
+.error-message {
+  padding: 5px;
+  background-color: #fbd2d2;
+  color: #510202;
+  border: 1px solid #510202;
+  margin-bottom: 10px;
+}
+
+.error-message p {
+  margin: 0;
+  padding: 0;
 }
 
 .btn {
@@ -97,6 +114,11 @@ h1 span {
   margin: 10px 10px;
   width: 300px;
   float: left;
+}
+
+span.date-time {
+  font-size: 12pt;
+  color: #6b6b6b;
 }
 
 .workout-actions {
